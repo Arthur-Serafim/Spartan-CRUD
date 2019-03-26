@@ -1,6 +1,6 @@
 {
-  "name": "todo-ninja",
-  "version": "0.1.0",
+  "name": "ninja-smoothie",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
