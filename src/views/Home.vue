@@ -1,24 +1,52 @@
 <template>
-  <div>  
-    <Navbar />
+  <div class="body">  
     <v-container class="home mt-3">
-      <v-card align-content-space-around class="blue darken-3 elevation-10 mb-4" v-for="smoothie in smoothies" :key="smoothie.id">
+      <v-card 
+        class=" elevation-10 mb-4" 
+        v-for="smoothie in smoothies" :key="smoothie.id"
+      >
+        <v-img
+          class="white--text"
+          height="200px"
+          src="https://organicpowerfoods.com/wp-content/uploads/2015/12/Best-Protein-Rich-Smoothie-Recipes.jpg"
+        >
+          <v-container fill-height fluid>
+            <v-layout fill-height>
+              <v-flex xs12 flexbox>
+                <v-chip dark label class="title font-weight-light">{{ smoothie.title }}</v-chip>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-img>
+        <div class="pb-3 justify-center">
+          <v-icon
+            flat
+            class="font-weight-light right pt-2 pr-2 icon"
+            @click="deleteSmoothie(smoothie.id)"
+          >
+            delete
+          </v-icon>
+          <router-link 
+            :to="{ name: 'EditSmoothie', params: {smoothie_slug: smoothie.slug}}"
+          >
+            <v-icon
+              flat          
+              class="font-weight-light left pt-2 pl-2 icon"
+            >
+              edit
+            </v-icon>
+          </router-link>
+        </div>
         <v-card-text>
-          <v-icon @click="deleteSmoothie(smoothie.id)" class="pointer white--text">delete</v-icon>
-          <v-card-title>
-            </v-card-title>
-          <h2 class="display-2 mb-3 text-md-center font-weight-light white--text" id="title"> {{ smoothie.title }} </h2>
-          <v-list class="blue darken-3">
-            <v-flex row>
-              <v-list-tile class="text-capitalize" v-for="(ingredient, index) in smoothie.ingredients" :key="index">
-                  <v-list-tile-content id="chip"> 
-                    <v-chip label class="white black--text">
-                      {{ ingredient }} 
-                    </v-chip>
-                  </v-list-tile-content>
-              </v-list-tile>
-            </v-flex>
-          </v-list>  
+          <v-list>
+            <template v-for="(ingredient, index) in smoothie.ingredients">
+              <v-divider :key="index"></v-divider>
+              <v-subheader :key="index" class="text-capitalize">
+                {{ ingredient }}
+              </v-subheader>
+            </template>
+            <v-divider></v-divider>
+          </v-list>
         </v-card-text>
       </v-card>      
     </v-container>
@@ -26,14 +54,10 @@
 </template>
 
 <script>
-  import Navbar from '@/components/Navbar'
   import db from '@/firebase/init.js'
 
   export default {
     name: 'Home',
-    components:  {
-      Navbar
-    },
     data() {
       return {
         smoothies: []
@@ -69,12 +93,14 @@
     grid-gap: 40px;
   }
 
-  #title {
-    font-family: 'ZCOOL XiaoWei', serif !important;
+  .title {
+    display: flex;
+    justify-content: center;
   }
 
-  #chip {
-    display: inline-block
+  .icon {
+    cursor: pointer
   }
+
 
 </style>
