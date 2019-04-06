@@ -15,4 +15,4 @@ npm run serve
 npm run build
 ```
 
-This is a project done along with a VueJS course, having the layout changed and uses a different CSS framework. Hope you enjoy!
+This is a project done along with a VueJS course, having the layout changed, using a different CSS framework. Hope you enjoy!
