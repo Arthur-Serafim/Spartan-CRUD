@@ -3,7 +3,9 @@
     <v-container class="mt-5">
       <h1 
         class="display-1 text-md-center font-weight-light pb-4"
-      >Add New Smoothie</h1>
+      >
+        Add New Smoothie
+      </h1>
       <v-text-field
         label="Title"
         v-model="title"
@@ -34,7 +36,7 @@
         color="orange"
         @click="AddSmoothie"
       >
-        submit
+        Add Smoothie
       </v-btn>
       </v-layout>
       <v-snackbar
