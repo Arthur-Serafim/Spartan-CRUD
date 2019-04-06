@@ -86,10 +86,14 @@
             title: this.title,
             ingredients: this.ingredients,
             slug: this.slug
+          }).then(() => {
+            this.ingredients = null
+            this.title = null
+            this.slug = null
+            this.$router.push({ name: 'Home' })
+          }).catch(err => {
+            console.log(err)
           })
-          this.ingredients = null
-          this.title = null
-          this.slug = null
         } else {
           this.warning = 'You must enter a name' 
           this.snackbar = true

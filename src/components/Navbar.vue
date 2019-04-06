@@ -8,7 +8,7 @@
         class="headline text-uppercase"
       >
         <router-link :to="{ name: 'Home' }" tag="a">
-          <span class="font-weight-light white--text" id="title">Ninja Smoothie</span>
+          <span class="font-weight-light white--text" id="title">Spartan CRUD</span>
         </router-link>
         <v-btn 
           v-on="on"

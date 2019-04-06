@@ -18,7 +18,7 @@
         white--text
         xs12
       >
-        &copy;2019 — <a id="git" target="_blank" href="https://github.com/Seraph-Arthur">Arthur Serafim</a>
+        &copy;2019 — <a id="git" target="_blank" href="https://github.com/Seraph-Arthur">Arthur Serafim</a> - <a id="git" target="_blank" href="https://www.flaticon.com/authors/freepik">Icons</a> 
       </v-flex>
     </v-layout>
   </v-footer>

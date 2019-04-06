@@ -41,7 +41,7 @@
       </v-layout>
       <v-snackbar
         v-model="snackbar"
-        color="warning"
+        color="error"
         top
       >
         {{ warning }}
@@ -59,6 +59,7 @@
 
 <script>
 import db from '@/firebase/init'
+import slugify from 'slugify'
 
 export default {
   name: 'EditSmoothie',
@@ -72,7 +73,29 @@ export default {
   },
   methods: {
     EditSmoothie() {
-      console.log(this.smoothie)
+      if (this.smoothie.title) {
+          // Create slug
+          this.smoothie.slug = slugify(this.smoothie.title, {
+            replacement: '-',
+            remove: /[$*_+~.()'"!\-:@]/g,
+            lower: true
+          })
+          db.collection('smoothie').doc(this.smoothie.id).update({
+            title: this.smoothie.title,
+            ingredients: this.smoothie.ingredients,
+            slug: this.smoothie.slug
+          }).then(() => {
+            this.ingredients = null
+            this.title = null
+            this.slug = null
+            this.$router.push({ name: 'Home' })
+          }).catch(err => {
+            console.log(err)
+          })
+        } else {
+          this.warning = 'You must enter a name' 
+          this.snackbar = true
+        }
     },
     addIng() {
         if (this.another) {
